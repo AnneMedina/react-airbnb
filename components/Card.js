@@ -26,8 +26,10 @@ export default function Card() {
         <div className="card--soldout">SOLD OUT</div>
         <img src="../images/katie-zaferes.png" className="card--photo" />
         <div className="card--rating">
-          <a><img src="../images/star.png" className="card--rating-star" />5.0</a>
-          <a className="card--rating-label">(6) &#x2022; USA</a>
+          <img src="../images/star.png" className="card--rating-star" />
+          <span>5.0</span>
+          <span className="card--rating-label">(6) &#x2022; </span>
+          <span>USA</span>
         </div>
         <p className="card--text">Life lessons with Katie Zaferes</p>
         <p className="card--text"><a className="card--amount">From $136</a> / person </p>
