@@ -460,17 +460,31 @@ var _Card2 = _interopRequireDefault(_Card);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
-Challenge: Build the Navbar component.
-Check the Figma file for the design specifics.
-*/
+Challenge: Pass props to the Card component and display that data
 
+- img ("katie-zaferes.png")
+- rating ("5.0")
+- reviewCount (6)
+- country (Whatever you want)
+- title ("Life Lessons with Katie Zaferes")
+- price (136)
+
+*/
 function App() {
     return _react2.default.createElement(
         "div",
         null,
         _react2.default.createElement(_Navbar2.default, null),
         _react2.default.createElement(_Hero2.default, null),
-        _react2.default.createElement(_Card2.default, null)
+        _react2.default.createElement(_Card2.default, {
+            soldout: true,
+            img: "katie-zaferes.png",
+            rating: 5.0,
+            ratingLabel: "(6)",
+            country: "USA",
+            text: "Life lessons with Katie Zaferes",
+            rate: 136
+        })
     );
 }
 
@@ -492,26 +506,7 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
-Challenge: Build the Card component
-For now, hard-code in the data (like 
-the rating, title, price, etc.)
-
-Notes:
-- Only render 1 instance (I already did this for you)
-- The star icon and photo (katie-zaferes.png) are in the images 
-  folder for your use
-- Make sure to include:
-    - image
-    - star icon (star.png), rating, and review count
-    - title
-    - cost/person
-- The main purpose of this challenge is to show you where our limitations
-  currently are, so don't worry about the fact that you're hard-coding all
-  this data into the component.
-*/
-
-function Card() {
+function Card(props) {
   return _react2.default.createElement(
     "section",
     { className: "cards" },
@@ -520,10 +515,10 @@ function Card() {
       { className: "card" },
       _react2.default.createElement(
         "div",
-        { className: "card--soldout" },
+        { className: "card--soldout", style: { display: props.soldout ? "block" : "none" } },
         "SOLD OUT"
       ),
-      _react2.default.createElement("img", { src: "../images/katie-zaferes.png", className: "card--photo" }),
+      _react2.default.createElement("img", { src: "../images/" + props.img, className: "card--photo" }),
       _react2.default.createElement(
         "div",
         { className: "card--rating" },
@@ -531,23 +526,24 @@ function Card() {
         _react2.default.createElement(
           "span",
           null,
-          "5.0"
+          props.rating.toFixed(1)
         ),
         _react2.default.createElement(
           "span",
           { className: "card--rating-label" },
-          "(6) \u2022 "
+          props.ratingLabel,
+          " \u2022 "
         ),
         _react2.default.createElement(
           "span",
           null,
-          "USA"
+          props.country
         )
       ),
       _react2.default.createElement(
         "p",
         { className: "card--text" },
-        "Life lessons with Katie Zaferes"
+        props.text
       ),
       _react2.default.createElement(
         "p",
@@ -555,7 +551,8 @@ function Card() {
         _react2.default.createElement(
           "a",
           { className: "card--amount" },
-          "From $136"
+          "From $",
+          props.rate
         ),
         " / person "
       )
