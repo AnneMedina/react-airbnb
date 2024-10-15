@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -264,9 +264,9 @@ process.umask = function() { return 0; };
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(13);
+  module.exports = __webpack_require__(14);
 } else {
-  module.exports = __webpack_require__(12);
+  module.exports = __webpack_require__(13);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -375,6 +375,95 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(18);
+} else {
+  module.exports = __webpack_require__(17);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = App;
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Navbar = __webpack_require__(8);
+
+var _Navbar2 = _interopRequireDefault(_Navbar);
+
+var _Hero = __webpack_require__(7);
+
+var _Hero2 = _interopRequireDefault(_Hero);
+
+var _Card = __webpack_require__(6);
+
+var _Card2 = _interopRequireDefault(_Card);
+
+var _data = __webpack_require__(9);
+
+var _data2 = _interopRequireDefault(_data);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+Challenge:
+
+- import the array of data from data.js
+- map over the array to create <Card /> components
+- display the array of card components under the navbar
+  (in place of the current <Card /> component)
+
+Note: We haven't styled the group of components yet, so they'll
+still be block elements, stacked vertically. We'll add styling later.
+*/
+
+function App() {
+
+    var cardData = _data2.default.map(function (obj) {
+        return _react2.default.createElement(_Card2.default, {
+            key: obj.id,
+            img: obj.coverImg,
+            rating: obj.stats.rating,
+            reviewCount: obj.stats.reviewCount,
+            location: obj.location,
+            title: obj.title,
+            price: obj.price
+        });
+    });
+
+    console.log(cardData);
+    // <Hero />
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(_Navbar2.default, null),
+        _react2.default.createElement(
+            "section",
+            { className: "cards-list" },
+            cardData
+        )
+    );
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
 function checkDCE() {
   /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
   if (
@@ -407,86 +496,12 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
+  module.exports = __webpack_require__(12);
+} else {
   module.exports = __webpack_require__(11);
-} else {
-  module.exports = __webpack_require__(10);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(17);
-} else {
-  module.exports = __webpack_require__(16);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = App;
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Navbar = __webpack_require__(8);
-
-var _Navbar2 = _interopRequireDefault(_Navbar);
-
-var _Hero = __webpack_require__(7);
-
-var _Hero2 = _interopRequireDefault(_Hero);
-
-var _Card = __webpack_require__(6);
-
-var _Card2 = _interopRequireDefault(_Card);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/*
-Challenge: Pass props to the Card component and display that data
-
-- img ("katie-zaferes.png")
-- rating ("5.0")
-- reviewCount (6)
-- country (Whatever you want)
-- title ("Life Lessons with Katie Zaferes")
-- price (136)
-
-*/
-function App() {
-    return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(_Navbar2.default, null),
-        _react2.default.createElement(_Hero2.default, null),
-        _react2.default.createElement(_Card2.default, {
-            soldout: true,
-            img: "katie-zaferes.png",
-            rating: 5.0,
-            ratingLabel: "(6)",
-            country: "USA",
-            text: "Life lessons with Katie Zaferes",
-            rate: 136
-        })
-    );
-}
 
 /***/ }),
 /* 6 */
@@ -496,7 +511,7 @@ function App() {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.default = Card;
 
@@ -507,57 +522,49 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Card(props) {
-  return _react2.default.createElement(
-    "section",
-    { className: "cards" },
-    _react2.default.createElement(
-      "div",
-      { className: "card" },
-      _react2.default.createElement(
+    return _react2.default.createElement(
         "div",
-        { className: "card--soldout", style: { display: props.soldout ? "block" : "none" } },
-        "SOLD OUT"
-      ),
-      _react2.default.createElement("img", { src: "../images/" + props.img, className: "card--photo" }),
-      _react2.default.createElement(
-        "div",
-        { className: "card--rating" },
-        _react2.default.createElement("img", { src: "../images/star.png", className: "card--rating-star" }),
+        { className: "card" },
+        _react2.default.createElement("img", { src: "../images/" + props.img, className: "card--image" }),
         _react2.default.createElement(
-          "span",
-          null,
-          props.rating.toFixed(1)
+            "div",
+            { className: "card--stats" },
+            _react2.default.createElement("img", { src: "../images/star.png", className: "card--star" }),
+            _react2.default.createElement(
+                "span",
+                null,
+                props.rating
+            ),
+            _react2.default.createElement(
+                "span",
+                { className: "gray" },
+                "(",
+                props.reviewCount,
+                ") \u2022 "
+            ),
+            _react2.default.createElement(
+                "span",
+                { className: "gray" },
+                props.location
+            )
         ),
         _react2.default.createElement(
-          "span",
-          { className: "card--rating-label" },
-          props.ratingLabel,
-          " \u2022 "
+            "p",
+            { className: "card--title" },
+            props.title
         ),
         _react2.default.createElement(
-          "span",
-          null,
-          props.country
+            "p",
+            { className: "card--price" },
+            _react2.default.createElement(
+                "span",
+                { className: "bold" },
+                "From $",
+                props.price
+            ),
+            " / person"
         )
-      ),
-      _react2.default.createElement(
-        "p",
-        { className: "card--text" },
-        props.text
-      ),
-      _react2.default.createElement(
-        "p",
-        { className: "card--text" },
-        _react2.default.createElement(
-          "a",
-          { className: "card--amount" },
-          "From $",
-          props.rate
-        ),
-        " / person "
-      )
-    )
-  );
+    );
 }
 
 /***/ }),
@@ -581,7 +588,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Hero() {
     return _react2.default.createElement(
         "section",
-        null,
+        { className: "hero" },
         _react2.default.createElement("img", { src: "../images/photo-grid.png", className: "hero--photo" }),
         _react2.default.createElement(
             "h1",
@@ -612,21 +619,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(3);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import logo from "../images/airbnb-logo.png";
-// import photogrid from "../images/photo-grid.png"
-
 
 function Navbar() {
     return _react2.default.createElement(
         "nav",
         null,
-        _react2.default.createElement("img", { src: "../images/airbnb-logo.png", className: "navbar-logo" })
+        _react2.default.createElement("img", { src: "../images/airbnb-logo.png", className: "nav--logo" })
     );
 }
 
@@ -637,15 +636,63 @@ function Navbar() {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = [{
+    id: 1,
+    title: "Life Lessons with Katie Zaferes",
+    description: "I will share with you what I call \"Positively Impactful Moments of Disappointment.\" Throughout my career, many of my highest moments only came after setbacks and losses. But learning from those difficult moments is what gave me the ability to rise above them and reach my goals.",
+    price: 136,
+    coverImg: "katie-zaferes.png",
+    stats: {
+        rating: 5.0,
+        reviewCount: 6
+    },
+    location: "Online",
+    openSpots: 0
+}, {
+    id: 2,
+    title: "Learn Wedding Photography",
+    description: "Interested in becoming a wedding photographer? For beginner and experienced photographers alike, join us in learning techniques required to leave the happy couple with memories that'll last a lifetime.",
+    price: 125,
+    coverImg: "wedding-photography.png",
+    stats: {
+        rating: 5.0,
+        reviewCount: 30
+    },
+    location: "Online",
+    openSpots: 27
+}, {
+    id: 3,
+    title: "Group Mountain Biking",
+    description: "Experience the beautiful Norwegian landscape and meet new friends all while conquering rugged terrain on your mountain bike. (Bike provided!)",
+    price: 50,
+    coverImg: "mountain-bike.png",
+    stats: {
+        rating: 4.8,
+        reviewCount: 2
+    },
+    location: "Norway",
+    openSpots: 3
+}];
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(3);
+var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(5);
+var _App = __webpack_require__(4);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -654,7 +701,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById("root"));
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -675,8 +722,8 @@ if (process.env.NODE_ENV !== "production") {
 
 var React = __webpack_require__(1);
 var _assign = __webpack_require__(2);
-var Scheduler = __webpack_require__(4);
-var tracing = __webpack_require__(18);
+var Scheduler = __webpack_require__(3);
+var tracing = __webpack_require__(19);
 
 var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
@@ -26924,7 +26971,7 @@ exports.version = ReactVersion;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26939,7 +26986,7 @@ exports.version = ReactVersion;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),m=__webpack_require__(2),r=__webpack_require__(4);function y(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(y(227));var ba=new Set,ca={};function da(a,b){ea(a,b);ea(a+"Capture",b)}
+var aa=__webpack_require__(1),m=__webpack_require__(2),r=__webpack_require__(3);function y(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(y(227));var ba=new Set,ca={};function da(a,b){ea(a,b);ea(a+"Capture",b)}
 function ea(a,b){ca[a]=b;for(a=0;a<b.length;a++)ba.add(b[a])}
 var fa=!("undefined"===typeof window||"undefined"===typeof window.document||"undefined"===typeof window.document.createElement),ha=/^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/,ia=Object.prototype.hasOwnProperty,
 ja={},ka={};function la(a){if(ia.call(ka,a))return!0;if(ia.call(ja,a))return!1;if(ha.test(a))return ka[a]=!0;ja[a]=!0;return!1}function ma(a,b,c,d){if(null!==c&&0===c.type)return!1;switch(typeof b){case "function":case "symbol":return!0;case "boolean":if(d)return!1;if(null!==c)return!c.acceptsBooleans;a=a.toLowerCase().slice(0,5);return"data-"!==a&&"aria-"!==a;default:return!1}}
@@ -27228,7 +27275,7 @@ exports.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!rk(c))throw Er
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29569,7 +29616,7 @@ exports.version = ReactVersion;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29599,7 +29646,7 @@ exports.useLayoutEffect=function(a,b){return S().useLayoutEffect(a,b)};exports.u
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29954,7 +30001,7 @@ exports.unstable_wrap = unstable_wrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29970,7 +30017,7 @@ var b=0;exports.__interactionsRef=null;exports.__subscriberRef=null;exports.unst
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30624,7 +30671,7 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30651,16 +30698,16 @@ exports.unstable_wrapCallback=function(a){var b=P;return function(){var c=P;P=b;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(15);
+  module.exports = __webpack_require__(16);
 } else {
-  module.exports = __webpack_require__(14);
+  module.exports = __webpack_require__(15);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
